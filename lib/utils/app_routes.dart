@@ -9,9 +9,11 @@ import 'package:resume_app/screen/home/home_screen.dart';
 import 'package:resume_app/screen/interest/interest.dart';
 import 'package:resume_app/screen/personal/personal_screen.dart';
 import 'package:resume_app/screen/project/project.dart';
+import 'package:resume_app/screen/splash/splash_screen.dart';
 
 Map<String, WidgetBuilder> app_routes = {
-  "/": (context) => HomeScreen(),
+  "/": (context) => SplashScreen(),
+  "/home": (context) => HomeScreen(),
   "/contact": (context) => ContactScreen(),
   "/carrier": (context) => CarrierScreen(),
   "/pesonal": (context) => PersonalScreen(),
