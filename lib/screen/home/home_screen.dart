@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:resume_app/screen/contact/contact_screen.dart';
 import 'package:resume_app/utils/app_color.dart';
 import 'package:resume_app/utils/app_routes.dart';
@@ -12,6 +13,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.blue,
+    ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,10 +4,10 @@ import 'package:resume_app/utils/app_routes.dart';
 
 void main() {
   WidgetsFlutterBinding();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.red,
-    systemNavigationBarColor: Colors.blue,
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarColor: Colors.red,
+  //   systemNavigationBarColor: Colors.blue,
+  // ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     MaterialApp(
