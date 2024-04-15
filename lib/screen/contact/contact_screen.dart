@@ -8,167 +8,211 @@ class ContactScreen extends StatefulWidget {
 }
 
 class _ContactScreenState extends State<ContactScreen> {
-  bool isContact = true;
-  bool isPhoto =false;
+  int indexKey = 0;
+  TextEditingController txtName = TextEditingController();
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtMobile = TextEditingController();
+  TextEditingController txtAdd = TextEditingController();
+  GlobalKey<FormState> formeKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0xffededed),
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: Colors.blue,
-          title: const Text(
-            "Resume Workspace",
-            style: TextStyle(fontSize: 25),
-          ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: Row(
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isContact = true;
-                        isPhoto = false;
-                      });
-                    },
-                    child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(color: Colors.amber, width: (isContact == true)?3:0))),
-                      child: const Text(
-                        "Contact",
-                        style: TextStyle(fontSize: 25, color: Colors.white),
+    return Form(
+      key: formeKey,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: const Color(0xffededed),
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            backgroundColor: Colors.blue,
+            title: const Text(
+              "Resume Workspace",
+              style: TextStyle(fontSize: 25),
+            ),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(100),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          indexKey = 0;
+                        });
+                      },
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.amber,
+                                    width: (indexKey == 0) ? 3 : 0))),
+                        child: const Text(
+                          "Contact",
+                          style: TextStyle(fontSize: 25, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isContact = false;
-                        isPhoto = true;
-                      });
-                    },
-                    child: Container(
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(color: Colors.amber, width: (isPhoto == false)?0:3))),
-                      child: const Text(
-                        "Photo",
-                        style: TextStyle(fontSize: 25, color: Colors.white),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          indexKey = 1;
+                        });
+                      },
+                      child: Container(
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: Colors.amber,
+                                    width: (indexKey == 1) ? 3 : 0))),
+                        child: const Text(
+                          "Photo",
+                          style: TextStyle(fontSize: 25, color: Colors.white),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-        body: Stack(
-          children: [
-            Visibility(
-              visible: isContact,
-              child: Container(
-                height: 350,
+          body: IndexedStack(
+            index: indexKey,
+            children: [
+              Container(
+                height: 600,
                 color: Colors.white,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 margin: const EdgeInsets.all(8),
-                child: const SingleChildScrollView(
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
+                      TextFormField(
+                        decoration: const InputDecoration(
                           label: Text("name"),
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.person),
                         ),
                         textInputAction: TextInputAction.next,
+                        controller: txtName,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Name is required";
+                          }
+                          return null;
+                        },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
+                      TextFormField(
+                        decoration: const InputDecoration(
                             label: Text("Email"),
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.email)),
                         textInputAction: TextInputAction.next,
+                        controller: txtEmail,
+                        validator: (value) {
+                          if (!RegExp(
+                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                              .hasMatch(value!)) {
+                            return "Email is required";
+                          } else if (value!.isEmpty) {
+                            return "Email is required";
+                          }
+                          return null;
+                        },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
-                      TextField(
+                      TextFormField(
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text("Mobile"),
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.phone_android),
                         ),
                         textInputAction: TextInputAction.next,
+                        controller: txtMobile,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email is required";
+                          } else if (value.length != 10) {
+                            return "Enter validate number";
+                          }
+                        },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            label: Text("Passwords"),
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.password),
-                            suffixIcon: Icon((Icons.remove_red_eye))),
-                        textInputAction: TextInputAction.next,
+                      TextFormField(
+                        maxLines: 4,
+                        decoration: const InputDecoration(
+                          label: Text("Address (Street,Building no)"),
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.location_on),
+                        ),
+                        controller: txtAdd,
                       ),
-                      SizedBox(
-                        height: 5,
+                      const SizedBox(
+                        height: 10,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                            label: Text("Address (Street,Building no)"),
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.location_on)),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (formeKey.currentState!.validate()) {
+                            String name = txtName.text;
+                            String email = txtEmail.text;
+                            String mobile = txtMobile.text;
+                            String add = txtAdd.text;
+                            print("$name, $email , $mobile , $add ");
+                          } else {
+                            return null;
+                          }
+                        },
+                        child: const Text("submit"),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-            Visibility(
-              visible: isPhoto,
-              child: Container(
+              Container(
                 height: 200,
                 alignment: Alignment.center,
                 color: Colors.white,
+                margin: const EdgeInsets.all(15),
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     const CircleAvatar(
                       backgroundColor: Colors.grey,
                       radius: 70,
-                      child: Text("ADD",style: TextStyle(color: Colors.black,fontSize: 20),),
+                      child: Text(
+                        "ADD",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
                     ),
                     Align(
                       alignment: const Alignment(0.3, 0.5),
-                      child: Container(
-                          height: 35,
-                          width: 35,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.blue),
-                          child: const Icon(Icons.add)),
+                      child: IconButton.filledTonal(
+                          // style: ButtonStyle(
+                          //     backgroundColor:
+                          //         MaterialStateProperty.all(Colors.cyan)),
+                          onPressed: () {},
+                          icon: Icon(Icons.add)),
                     )
                   ],
                 ),
               ),
-            )
-          ],
+            ],
+          ),
+
         ),
       ),
     );
