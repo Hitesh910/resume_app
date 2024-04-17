@@ -17,7 +17,7 @@ List<Map> tileList = [
   {
     "name": "Personal Details",
     "icon": Icons.person,
-    "routes": '/carrier',
+    "routes": '/personal',
   }
   ,
   {
@@ -58,7 +58,19 @@ List<Map> tileList = [
   {
     "name":"Declaration",
     "icon": Icons.insert_chart,
-    "routes": '/references',
+    "routes": '/declaration',
   },
+  {
+    "name":"Resume",
+    "icon": Icons.rate_review,
+    "routes": '/resume'
+  }
 
 ];
+
+String? name,email,mobile,add;
+String? path;
+String? desp,cd;
+String? dob,nationality;
+String? degree,college,marks,year;
+String isSelected = "Single";

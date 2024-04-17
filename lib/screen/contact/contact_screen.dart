@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:resume_app/utils/global.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -14,8 +18,20 @@ class _ContactScreenState extends State<ContactScreen> {
   TextEditingController txtMobile = TextEditingController();
   TextEditingController txtAdd = TextEditingController();
   GlobalKey<FormState> formeKey = GlobalKey<FormState>();
+  ImagePicker picker = ImagePicker();
 
   @override
+  void initState() {
+    super.initState();
+    if(name!=null && email!=null && mobile!=null && add!=null)
+      {
+        txtName.text = name!;
+        txtEmail.text = email!;
+        txtMobile.text = mobile!;
+        txtAdd.text = add!;
+      }
+  }
+
   Widget build(BuildContext context) {
     return Form(
       key: formeKey,
@@ -147,6 +163,7 @@ class _ContactScreenState extends State<ContactScreen> {
                           } else if (value.length != 10) {
                             return "Enter validate number";
                           }
+                          return null;
                         },
                       ),
                       const SizedBox(
@@ -160,23 +177,37 @@ class _ContactScreenState extends State<ContactScreen> {
                           prefixIcon: Icon(Icons.location_on),
                         ),
                         controller: txtAdd,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Address is required";
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Your data saved")));
                           if (formeKey.currentState!.validate()) {
-                            String name = txtName.text;
-                            String email = txtEmail.text;
-                            String mobile = txtMobile.text;
-                            String add = txtAdd.text;
+                            name = txtName.text;
+                            email = txtEmail.text;
+                            mobile = txtMobile.text;
+                            add = txtAdd.text;
                             print("$name, $email , $mobile , $add ");
                           } else {
                             return null;
                           }
                         },
                         child: const Text("submit"),
+
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          formeKey.currentState!.reset();
+                        },
+                        child: const Text("clear"),
                       ),
                     ],
                   ),
@@ -190,29 +221,35 @@ class _ContactScreenState extends State<ContactScreen> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    const CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      radius: 70,
-                      child: Text(
-                        "ADD",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
-                      ),
-                    ),
+                    (path == null)
+                        ? const CircleAvatar(
+                            radius: 70,
+                            backgroundColor: Colors.green,
+                          )
+                        : CircleAvatar(
+                            radius: 70,
+                            backgroundImage: FileImage(File("$path")),
+                          ),
                     Align(
                       alignment: const Alignment(0.3, 0.5),
                       child: IconButton.filledTonal(
                           // style: ButtonStyle(
                           //     backgroundColor:
                           //         MaterialStateProperty.all(Colors.cyan)),
-                          onPressed: () {},
-                          icon: Icon(Icons.add)),
+                          onPressed: () async {
+                            XFile? image = await picker.pickImage(
+                                source: ImageSource.gallery);
+                            setState(() {
+                              path = image!.path;
+                            });
+                          },
+                          icon: const Icon(Icons.add)),
                     )
                   ],
                 ),
               ),
             ],
           ),
-
         ),
       ),
     );

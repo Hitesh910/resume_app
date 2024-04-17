@@ -40,15 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Column(
-        children: List.generate(
-          tileList.length,
-          (index) {
-            return Tile(
-                label: tileList[index]['name'],
-                icons: tileList[index]['icon'],
-                routes: tileList[index]['routes']);
-          },
+      body: SingleChildScrollView(
+        child: Column(
+          children: List.generate(
+            tileList.length,
+            (index) {
+              return Tile(
+                  label: tileList[index]['name'],
+                  icons: tileList[index]['icon'],
+                  routes: tileList[index]['routes']);
+            },
+          ),
         ),
       ),
     );
