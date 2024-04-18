@@ -11,6 +11,7 @@ import 'package:resume_app/screen/personal/personal_screen.dart';
 import 'package:resume_app/screen/project/project.dart';
 import 'package:resume_app/screen/resume/resume_screen.dart';
 import 'package:resume_app/screen/splash/splash_screen.dart';
+import 'package:resume_app/screen/technical/technical.dart';
 
 Map<String, WidgetBuilder> app_routes = {
   "/": (context) => SplashScreen(),
@@ -24,5 +25,6 @@ Map<String, WidgetBuilder> app_routes = {
   "/project": (context) => ProjectScreen(),
   "/achievements": (context) => AchivementScreen(),
   "/declaration": (context) => DeclarationScreen(),
+  "/technical":(context) => TechnicalScreen(),
   "/resume": (context) => ResumeScreen(),
 };

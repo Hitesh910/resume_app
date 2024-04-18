@@ -22,6 +22,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
   TextEditingController txtDob = TextEditingController();
   TextEditingController txtNationality = TextEditingController();
   GlobalKey<FormState> fromKey = GlobalKey<FormState>();
+  String isSelected = "Single";
 
   @override
   void initState() {
@@ -136,6 +137,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                     setState(
                       () {
                         isSelected = value!;
+                        marriedstatus = value;
                       },
                     );
                   },
@@ -154,6 +156,7 @@ class _PersonalScreenState extends State<PersonalScreen> {
                     setState(
                       () {
                         isSelected = value!;
+                        marriedstatus = value;
                       },
                     );
                   },
@@ -199,6 +202,10 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   onChanged: (value) {
                     setState(() {
                       isHindi = value!;
+                      if(isHindi)
+                        {
+                          lng1 = "Hindi";
+                        }
                     });
                   },
                   title: const Text(
@@ -215,6 +222,10 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   onChanged: (value) {
                     setState(() {
                       isEnglish = value!;
+                      if(isEnglish)
+                        {
+                          lng2 = "English";
+                        }
                     });
                   },
                   title: const Text(
@@ -231,6 +242,10 @@ class _PersonalScreenState extends State<PersonalScreen> {
                   onChanged: (value) {
                     setState(() {
                       isGujarati = value!;
+                      if(isGujarati)
+                        {
+                          lng3 = "Gujarati";
+                        }
                     });
                   },
                   title: const Text(

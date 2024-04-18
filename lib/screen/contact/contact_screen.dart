@@ -136,7 +136,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         controller: txtEmail,
                         validator: (value) {
                           if (!RegExp(
-                                  r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
                               .hasMatch(value!)) {
                             return "Email is required";
                           } else if (value!.isEmpty) {
@@ -205,7 +205,8 @@ class _ContactScreenState extends State<ContactScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          formeKey.currentState!.reset();
+                          formeKey.currentState!
+                              .reset();
                         },
                         child: const Text("clear"),
                       ),
