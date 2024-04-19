@@ -1,4 +1,11 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:resume_app/utils/app_color.dart';
 import 'package:resume_app/utils/global.dart';
 
@@ -65,11 +72,13 @@ class _EducationScreenState extends State<EducationScreen> {
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text(
-                      "B.Tech Information Technology",
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w500),
-                    ),
+                    // label: Text(
+                    //   "B.Tech Information Technology",
+                    //   style: TextStyle(
+                    //       color: Colors.grey, fontWeight: FontWeight.w500),
+                    // ),
+                    hintText: "B.tech Information Technology",
+                    hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
                   ),
                   controller: txtDegree,
                   validator: (value) {
@@ -92,11 +101,13 @@ class _EducationScreenState extends State<EducationScreen> {
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text(
-                      "Bhagwan Mahavir University",
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w500),
-                    ),
+                    // label: Text(
+                    //   "Bhagwan Mahavir University",
+                    //   style: TextStyle(
+                    //       color: Colors.grey, fontWeight: FontWeight.w500),
+                    // ),
+                    hintText: "Bhagwan Mahavir University",
+                    hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
                   ),
                   controller: txtCollege,
                   validator: (value) {
@@ -119,11 +130,13 @@ class _EducationScreenState extends State<EducationScreen> {
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text(
-                      "70% (or) 7.0 CGPA",
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w500),
-                    ),
+                    // label: Text(
+                    //   "70% (or) 7.0 CGPA",
+                    //   style: TextStyle(
+                    //       color: Colors.grey, fontWeight: FontWeight.w500),
+                    // ),
+                    hintText: "70% (or) 7.0 CGPA",
+                    hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
                   ),
                   controller: txtMarks,
                   validator: (value) {
@@ -147,11 +160,13 @@ class _EducationScreenState extends State<EducationScreen> {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    label: Text(
-                      "2019",
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w500),
-                    ),
+                    // label: Text(
+                    //   "2019",
+                    //   style: TextStyle(
+                    //       color: Colors.grey, fontWeight: FontWeight.w500),
+                    // ),
+                    hintText: "2019",
+                    hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
                   ),
                   controller: txtYear,
                   validator: (value) {
@@ -167,7 +182,7 @@ class _EducationScreenState extends State<EducationScreen> {
                 Row(
                   children: [
                     ElevatedButton(onPressed: () {
-
+                      formKey.currentState!.reset();
                     }, child: const Text("Clear")),
                     const SizedBox(width: 15,),
                     ElevatedButton(

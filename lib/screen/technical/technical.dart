@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_app/utils/app_color.dart';
 import 'package:resume_app/utils/global.dart';
@@ -32,7 +33,11 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Your is data saved"),),);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Your is data saved"),
+                  ),
+                );
                 for (var x in txtList) {
                   String data = x.text;
                   dataList.add(data);
@@ -79,11 +84,17 @@ class _TechnicalScreenState extends State<TechnicalScreen> {
                                 padding: const EdgeInsets.all(5),
                                 child: TextFormField(
                                   decoration: const InputDecoration(
-                                      border: OutlineInputBorder(),
-                                      label: Text(
-                                        "C Programming,Web Technical",
-                                        style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w500),
-                                      )),
+                                    border: OutlineInputBorder(),
+                                    // label: Text(
+                                    //   "C Programming,Web Technical",
+                                    //   style: TextStyle(
+                                    //       color: Colors.grey,
+                                    //       fontSize: 16,
+                                    //       fontWeight: FontWeight.w500),
+                                    // ),
+                                    hintText: "C programming,Web Technical",
+                                    hintStyle: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
+                                  ),
                                   controller: txtList[index],
                                 ),
                               ),

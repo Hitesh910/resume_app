@@ -48,7 +48,7 @@ List<Map> tileList = [
   {
     "name": "Achivement",
     "icon": Icons.cabin,
-    "routes": '/achievement',
+    "routes": '/achievements',
   },
   {
     "name": "References",
@@ -85,3 +85,5 @@ String? project,roles,tech,pd;
 String? tech1;
 String? tech2;
 String? tech3;
+String? cname,iname,rules,joined,exits;
+String? rname,desg,org;

@@ -122,21 +122,21 @@ class _DeclarationScreenState extends State<DeclarationScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Date",
                                   style: TextStyle(
                                       color: Colors.grey,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 50,
                                 ),
                                 SizedBox(
                                   height: 35,
                                   width: 150,
                                   child: TextFormField(
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       label: Text(
                                         "DD/MM/YYYY",
@@ -158,12 +158,12 @@ class _DeclarationScreenState extends State<DeclarationScreen> {
                               ],
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Place(Inteview/venue/city)",
                                   style: TextStyle(
                                     color: Colors.grey,
@@ -171,14 +171,14 @@ class _DeclarationScreenState extends State<DeclarationScreen> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 SizedBox(
                                   height: 35,
                                   width: 120,
                                   child: TextFormField(
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       label: Text(
                                         "Eg.Surat",
@@ -204,39 +204,64 @@ class _DeclarationScreenState extends State<DeclarationScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  "Your data saved",
-                                ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              formKey.currentState!.reset();
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(Primary),
+                              shape: MaterialStatePropertyAll(
+                                LinearBorder.start(),
                               ),
-                            );
-                            if (formKey.currentState!.validate()) {
-                               despc = txtDespc.text;
-                              date = txtDate.text;
-                              place = txtPlace.text;
-                            }
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Primary),
-                            shape: MaterialStatePropertyAll(
-                              LinearBorder.start(),
+                              fixedSize: const MaterialStatePropertyAll(
+                                Size.fromWidth(120),
+                              ),
                             ),
-                            fixedSize: const MaterialStatePropertyAll(
-                              Size.fromWidth(120),
+                            child: const Text(
+                             "Clear",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
-                          child: const Text(
-                            "Save",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
+                          SizedBox(width: 5,),
+                          ElevatedButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "Your data saved",
+                                  ),
+                                ),
+                              );
+                              if (formKey.currentState!.validate()) {
+                                 despc = txtDespc.text;
+                                date = txtDate.text;
+                                place = txtPlace.text;
+                              }
+                            },
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStatePropertyAll(Primary),
+                              shape: MaterialStatePropertyAll(
+                                LinearBorder.start(),
+                              ),
+                              fixedSize: const MaterialStatePropertyAll(
+                                Size.fromWidth(120),
+                              ),
+                            ),
+                            child: const Text(
+                              "Save",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
-                        ),
+                        ],
                       )
                     ],
                   ),

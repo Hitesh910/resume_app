@@ -9,6 +9,7 @@ import 'package:resume_app/screen/home/home_screen.dart';
 import 'package:resume_app/screen/interest/interest.dart';
 import 'package:resume_app/screen/personal/personal_screen.dart';
 import 'package:resume_app/screen/project/project.dart';
+import 'package:resume_app/screen/references/references.dart';
 import 'package:resume_app/screen/resume/resume_screen.dart';
 import 'package:resume_app/screen/splash/splash_screen.dart';
 import 'package:resume_app/screen/technical/technical.dart';
@@ -26,5 +27,6 @@ Map<String, WidgetBuilder> app_routes = {
   "/achievements": (context) => AchivementScreen(),
   "/declaration": (context) => DeclarationScreen(),
   "/technical":(context) => TechnicalScreen(),
+  "/references":(context) => ReferencesScreen(),
   "/resume": (context) => ResumeScreen(),
 };

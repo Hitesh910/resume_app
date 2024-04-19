@@ -17,12 +17,12 @@ class _CarrierScreenState extends State<CarrierScreen> {
   @override
   void initState() {
     super.initState();
-    if(desp != null && cd != null)
-      {
-        txtDesp.text = desp!;
-        txtCd.text = cd!;
-      }
+    if (desp != null && cd != null) {
+      txtDesp.text = desp!;
+      txtCd.text = cd!;
+    }
   }
+
   Widget build(BuildContext context) {
     return Form(
       key: fromKey,
@@ -116,10 +116,9 @@ class _CarrierScreenState extends State<CarrierScreen> {
                       ),
                       controller: txtCd,
                       validator: (value) {
-                        if(value!.isEmpty)
-                          {
-                            return "Career Designation is required";
-                          }
+                        if (value!.isEmpty) {
+                          return "Career Designation is required";
+                        }
                       },
                     )
                   ],
@@ -127,7 +126,8 @@ class _CarrierScreenState extends State<CarrierScreen> {
               ),
               ElevatedButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Your data saved")));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Your data saved")));
                     if (fromKey.currentState!.validate()) {
                       desp = txtDesp.text;
                       cd = txtCd.text;
@@ -135,8 +135,11 @@ class _CarrierScreenState extends State<CarrierScreen> {
                     return null;
                   },
                   child: const Text("Save")),
-              ElevatedButton(onPressed: () {
-              }, child: const Text("Clear"))
+              ElevatedButton(
+                  onPressed: () {
+                    fromKey.currentState!.reset();
+                  },
+                  child: const Text("Clear"))
             ],
           ),
         ),

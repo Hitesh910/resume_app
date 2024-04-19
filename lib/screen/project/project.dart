@@ -64,10 +64,12 @@ class _ProjectScreenState extends State<ProjectScreen> {
                   child: TextFormField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text(
-                        "Resume Builder App",
-                        style: TextStyle(color: Colors.grey, fontSize: 20),
-                      ),
+                      // label: Text(
+                      //   "Resume Builder App",
+                      //   style: TextStyle(color: Colors.grey, fontSize: 20),
+                      // ),
+                      hintText: "Resume Builder App",
+                      hintStyle: TextStyle(color: Colors.grey, fontSize: 20)
                     ),
                     controller: txtProject,
                     validator: (value) {
@@ -160,7 +162,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
@@ -170,18 +172,20 @@ class _ProjectScreenState extends State<ProjectScreen> {
                       fontSize: 25,
                       fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 SizedBox(
                   height: 50,
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text(
-                        "Orgranse team member ,Code analysis",
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
-                      ),
+                      // label: Text(
+                      //   "Orgranse team member ,Code analysis",
+                      //   style: TextStyle(fontSize: 18, color: Colors.grey),
+                      // ),
+                      hintText: "Orgranse team member ,Code analysis",
+                      hintStyle: TextStyle(fontSize: 18, color: Colors.grey)
                     ),
                     controller: txtRoles,
                     validator: (value) {
@@ -192,7 +196,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
@@ -202,18 +206,20 @@ class _ProjectScreenState extends State<ProjectScreen> {
                       fontSize: 25,
                       fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 SizedBox(
                   height: 50,
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text(
-                        "5 - Programmers",
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
-                      ),
+                      // label: Text(
+                      //   "5 - Programmers",
+                      //   style: TextStyle(fontSize: 18, color: Colors.grey),
+                      // ),
+                      hintText: "5 - Programmers",
+                      hintStyle: TextStyle(fontSize: 18, color: Colors.grey)
                     ),
                     controller: txtTech,
                     validator: (value) {
@@ -224,7 +230,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
@@ -234,18 +240,20 @@ class _ProjectScreenState extends State<ProjectScreen> {
                       fontSize: 25,
                       fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 SizedBox(
                   height: 50,
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text(
-                        "Enter Your Project Description",
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
-                      ),
+                      // label: Text(
+                      //   "Enter Your Project Description",
+                      //   style: TextStyle(fontSize: 18, color: Colors.grey),
+                      // ),
+                      hintText: "Enter Your Project Description",
+                      hintStyle: TextStyle(fontSize: 18, color: Colors.grey)
                     ),
                     controller: txtPD,
                     validator: (value) {
@@ -256,41 +264,65 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Center(
-                  child: SizedBox(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Your data is saved"),
-                          ),
-                        );
-                        if (formKey.currentState!.validate()) {
-                          project = txtProject.text;
-                          roles = txtRoles.text;
-                          tech = txtTech.text;
-                          pd = txtPD.text;
-                        }
-                        return null;
-                      },
-                      child: Text(
-                        "Save",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      child: ElevatedButton(
+                        onPressed: () {
+                        formKey.currentState!.reset();
+                        },
+                        child: const Text(
+                         "Clear",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                            const MaterialStatePropertyAll(Colors.blue),
+                            shape: MaterialStatePropertyAll(
+                              LinearBorder.start(),
+                            ),
+                            fixedSize: const MaterialStatePropertyAll(
+                              Size.fromWidth(120),
+                            )),
                       ),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.blue),
-                          shape: MaterialStatePropertyAll(
-                            LinearBorder.start(),
-                          ),
-                          fixedSize: MaterialStatePropertyAll(
-                            Size.fromWidth(120),
-                          )),
                     ),
-                  ),
+                    SizedBox(width: 5,),
+                    SizedBox(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Your data is saved"),
+                            ),
+                          );
+                          if (formKey.currentState!.validate()) {
+                            project = txtProject.text;
+                            roles = txtRoles.text;
+                            tech = txtTech.text;
+                            pd = txtPD.text;
+                          }
+                          return null;
+                        },
+                        child: const Text(
+                          "Save",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                const MaterialStatePropertyAll(Colors.blue),
+                            shape: MaterialStatePropertyAll(
+                              LinearBorder.start(),
+                            ),
+                            fixedSize: const MaterialStatePropertyAll(
+                              Size.fromWidth(120),
+                            )),
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),

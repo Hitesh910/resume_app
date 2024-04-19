@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_app/utils/global.dart';
+import 'package:resume_app/utils/pdf_helper.dart';
 
 class ResumeScreen extends StatefulWidget {
   const ResumeScreen({super.key});
@@ -20,12 +21,22 @@ class _ResumeScreenState extends State<ResumeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.file(
-                File("$path"),
-                height: 500,
-                width: 200,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.file(
+                      File("$path"),
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ),
+                    Text("$name"),
+                  ],
+                ),
               ),
-              Text("$name"),
+              Divider(),
               Text("$email"),
               Text("$mobile"),
               Text("$add"),
@@ -58,6 +69,9 @@ class _ResumeScreenState extends State<ResumeScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        pdf();
+      },child: Icon(Icons.download),),
     );
   }
 }
