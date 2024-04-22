@@ -151,6 +151,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                     SizedBox(width: 5,),
                     ElevatedButton(
                       onPressed: () {
+                        ScaffoldMessenger.of(context)!.showSnackBar(SnackBar(content: Text("Your data saved"),),);
                         if(formKey.currentState!.validate())
                           {
                             rname= txtRname.text;

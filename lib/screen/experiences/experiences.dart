@@ -54,20 +54,21 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
                 Text(
                   "Company Name",
                   style: TextStyle(
-                      color: Primary, fontSize: 20, fontWeight: FontWeight.w500),
+                      color: Primary,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
                   height: 50,
                   child: TextFormField(
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      // label: Text(
-                      //   "New Enterprise,San Francisco",
-                      //   style: TextStyle(color: Colors.grey, fontSize: 18),
-                      // ),
-                      hintText: "New Enterprise,San Francisco",
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 18)
-                    ),
+                        border: OutlineInputBorder(),
+                        // label: Text(
+                        //   "New Enterprise,San Francisco",
+                        //   style: TextStyle(color: Colors.grey, fontSize: 18),
+                        // ),
+                        hintText: "New Enterprise,San Francisco",
+                        hintStyle: TextStyle(color: Colors.grey, fontSize: 18)),
                     controller: txtCname,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -92,14 +93,13 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
                   height: 50,
                   child: TextFormField(
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      // label: Text(
-                      //   "Quality Test Engineer",
-                      //   style: TextStyle(color: Colors.grey, fontSize: 18),
-                      // ),
-                      hintText: "Quality Test Engineer",
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 18)
-                    ),
+                        border: OutlineInputBorder(),
+                        // label: Text(
+                        //   "Quality Test Engineer",
+                        //   style: TextStyle(color: Colors.grey, fontSize: 18),
+                        // ),
+                        hintText: "Quality Test Engineer",
+                        hintStyle: TextStyle(color: Colors.grey, fontSize: 18)),
                     controller: txtIname,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -125,14 +125,13 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
                   child: TextFormField(
                     maxLines: 4,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      // label: Text(
-                      //   "Quality Test Engineer",
-                      //   style: TextStyle(color: Colors.grey, fontSize: 18),
-                      // ),
-                      hintText: "Quality Test Engineer",
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 18)
-                    ),
+                        border: OutlineInputBorder(),
+                        // label: Text(
+                        //   "Quality Test Engineer",
+                        //   style: TextStyle(color: Colors.grey, fontSize: 18),
+                        // ),
+                        hintText: "Quality Test Engineer",
+                        hintStyle: TextStyle(color: Colors.grey, fontSize: 18)),
                     controller: txtRoles,
                   ),
                 ),
@@ -202,23 +201,21 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
                           height: 35,
                           width: 110,
                           child: TextFormField(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              label: Text(
-                                "DD/MM/YYYY",
-                                style:
-                                    TextStyle(color: Colors.grey, fontSize: 12),
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                label: Text(
+                                  "DD/MM/YYYY",
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 12),
+                                ),
                               ),
-                            ),
-                            controller: txtJoined,
-                            validator: (value) {
-                              if(value!.isEmpty)
-                                {
+                              controller: txtJoined,
+                              validator: (value) {
+                                if (value!.isEmpty) {
                                   return "Date is required";
                                 }
-                              return null;
-                            }
-                          ),
+                                return null;
+                              }),
                         )
                       ],
                     ),
@@ -242,16 +239,15 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
                                 border: OutlineInputBorder(),
                                 label: Text(
                                   "DD/MM/YYYY",
-                                  style:
-                                      TextStyle(color: Colors.grey, fontSize: 12),
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 12),
                                 ),
                               ),
                               controller: txtExits,
                               validator: (value) {
-                                if(value!.isEmpty)
-                                  {
-                                    return "Date is required";
-                                  }
+                                if (value!.isEmpty) {
+                                  return "Date is required";
+                                }
                                 return null;
                               },
                             ),
@@ -269,33 +265,41 @@ class _ExperiencesScreenState extends State<ExperiencesScreen> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                       formKey.currentState!.reset();
+                        formKey.currentState!.reset();
                       },
                       style: ButtonStyle(
-                          shape: const MaterialStatePropertyAll(LinearBorder.none),
+                          shape:
+                              const MaterialStatePropertyAll(LinearBorder.none),
                           fixedSize: const MaterialStatePropertyAll(
                             Size.fromWidth(100),
                           ),
                           backgroundColor: MaterialStatePropertyAll(Primary)),
                       child: const Text(
-                       "Clear",
+                        "Clear",
                         style: TextStyle(color: Colors.white, fontSize: 15),
                       ),
                     ),
-                    SizedBox(width: 5,),
+                    const SizedBox(
+                      width: 5,
+                    ),
                     ElevatedButton(
                       onPressed: () {
-                        if(formKey.currentState!.validate())
-                          {
-                             cname = txtCname.text;
-                            iname = txtIname.text;
-                            rules = txtRoles.text;
-                             joined = txtJoined.text;
-                              exits = txtExits.text;
-                          }
+                        ScaffoldMessenger.of(context)!.showSnackBar(
+                          const SnackBar(
+                            content: Text("Your data saved"),
+                          ),
+                        );
+                        if (formKey.currentState!.validate()) {
+                          cname = txtCname.text;
+                          iname = txtIname.text;
+                          rules = txtRoles.text;
+                          joined = txtJoined.text;
+                          exits = txtExits.text;
+                        }
                       },
                       style: ButtonStyle(
-                          shape: const MaterialStatePropertyAll(LinearBorder.none),
+                          shape:
+                              const MaterialStatePropertyAll(LinearBorder.none),
                           fixedSize: const MaterialStatePropertyAll(
                             Size.fromWidth(100),
                           ),

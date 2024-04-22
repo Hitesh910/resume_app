@@ -32,6 +32,7 @@ class _AchivementScreenState extends State<AchivementScreen> {
         actions: [
           IconButton(
               onPressed: () {
+                ScaffoldMessenger.of(context)!.showSnackBar(SnackBar(content: Text("Your data saved"),),);
                 for (var z in txtList) {
                   String data = z.text;
                   dataList.add(data);
